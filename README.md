@@ -1,3 +1,7 @@
+# ao-golua
+
+Run ao in a native Lua 5.3 environment use golang.
+
 ### Environment Setup
 - Install lua 5.3
 - Install pkg-config and configure the path to lua5.3.pc in PKG_CONFIG_PATH 
