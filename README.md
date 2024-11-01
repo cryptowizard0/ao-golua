@@ -1,16 +1,54 @@
-### 环境准备
-- 安装 lua 5.3
-- 安装 pkg-config 并配置 lua5.3.pc 路径到 PKG_CONFIG_PATH
-如：export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/homebrew//Cellar/lua@5.3/5.3.6/lib/pkgconfig/
+### Environment Setup
+- Install lua 5.3
+- Install pkg-config and configure the path to lua5.3.pc in PKG_CONFIG_PATH 
 
-### 运行
-加 -tags "lua53"
+For example:
+
+``` export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/homebrew//Cellar/lua@5.3/5.3.6/lib/pkgconfig/```
+
+### Running
+- go mod tidy
+- run from main.go
+
 ```bash
+# add -tags "lua53"
 go run -tags "lua53" main.go
 ```
 
-### ao 的修改
+### Lua Code Explanation
+- `ao/aos` code
+- `setenv.lua` initializes the Lua environment
+- `token.lua` contains the test token code
+- `test.lua` is the test entry point
+- `main.go`
+```go
+func main() {
+	L := lua.NewState()
+	defer L.Close()
+	L.OpenLibs()
 
-- ao lua代码中所有的 pcall 替换成 unsafe_pcall
-- lsqlite3 还不支持
-- process 的 function print(a) 函数被替换了，注释掉
+	// set env
+	err := L.DoFile("setenv.lua")
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
+	// load ao process
+	err = L.DoFile("ao/process.lua")
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
+
+	// run lua code
+	err = L.DoFile("test.lua")
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
+}
+```
+
+### Modifications to ao
+
+- Replace all function of ```pcall``` with ```unsafe_pcall``` in ao Lua code
+- The process ```function print()``` in ```process.lua``` has been comment out
+- lsqlite3 is not supported yet
