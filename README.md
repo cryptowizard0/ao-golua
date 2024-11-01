@@ -50,6 +50,38 @@ func main() {
 	}
 }
 ```
+return:
+```bash
+process
+version: 2.0.0.rc2
+
+token.lua info:
+Name: Watermelon game test token
+Handlers: 
+version: 0.0.5
+ - info
+ - balance
+ - balances
+ - transfer
+ - mint
+ - totalSupply
+
+token.Info
+Name: Watermelon game test token
+Ticker: WGAME-TEST
+Logo: SBCCXwwecBlDqRLUjb8dYABExTJXLieawf7m2aBJ-KY
+Denomination: 12
+Desc: The Watermelon game test token
+true
+
+token.Mint
+Successfully minted 1000 to 0x123
+true
+
+token.Balance
+1000
+true
+```
 
 ### Modifications to ao
 
