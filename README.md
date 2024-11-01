@@ -20,7 +20,7 @@ go run -tags "lua53" main.go
 ```
 
 ### Lua Code Explanation
-- `ao/aos` code
+- `ao/` aos code
 - `setenv.lua` initializes the Lua environment
 - `token.lua` contains the test token code
 - `test.lua` is the test entry point
