@@ -318,7 +318,7 @@ function process.handle(msg, _)
 
   local co = coroutine.create(
     function()
-      return unsafe_pcall(Handlers.evaluate, msg, ao.env)
+      return pcall(Handlers.evaluate, msg, ao.env)
     end
   )
   local _, status, result = coroutine.resume(co)

@@ -1,13 +1,13 @@
 local ok, e
 ok = nil
 if not ok then
-    ok, e = unsafe_pcall(require, "bit") -- the LuaJIT one ?
+    ok, e = pcall(require, "bit") -- the LuaJIT one ?
 end
 if not ok then
-    ok, e = unsafe_pcall(require, "bit32") -- Lua 5.2
+    ok, e = pcall(require, "bit32") -- Lua 5.2
 end
 if not ok then
-    ok, e = unsafe_pcall(require, "bit.numberlua") -- for Lua 5.1, https://github.com/tst2005/lua-bit-numberlua/
+    ok, e = pcall(require, "bit.numberlua") -- for Lua 5.1, https://github.com/tst2005/lua-bit-numberlua/
 end
 if not ok then
     error("no bitwise support found", 2)

@@ -277,7 +277,7 @@ function handlers.evaluate(msg, env)
           handled = true
         end
         -- each handle function can accept, the msg, env
-        local status, err = unsafe_pcall(o.handle, msg, env)
+        local status, err = pcall(o.handle, msg, env)
         if not status then
           error(err)
         end

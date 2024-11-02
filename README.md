@@ -4,11 +4,10 @@ Run ao in a native Lua 5.3 environment use golang.
 
 ### Environment Setup
 - Install lua 5.3
+- Compile `lsqlite.so` and copy it to the `ao/` directory.
 - Install pkg-config and configure the path to lua5.3.pc in PKG_CONFIG_PATH 
 
-For example:
-
-``` export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/homebrew//Cellar/lua@5.3/5.3.6/lib/pkgconfig/```
+For example: ``` export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/opt/homebrew//Cellar/lua@5.3/5.3.6/lib/pkgconfig/```
 
 ### Running
 - go mod tidy
@@ -84,7 +83,5 @@ true
 ```
 
 ### Modifications to ao
-
-- Replace all function of ```pcall``` with ```unsafe_pcall``` in ao Lua code
 - The process ```function print()``` in ```process.lua``` has been comment out
-- lsqlite3 is not supported yet
+

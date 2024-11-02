@@ -25,7 +25,7 @@ return function (ao)
     else 
       -- set result in outbox.Output (Left for backwards compatibility)
       ao.outbox.Output = {  
-        json = type(output) == "table" and unsafe_pcall(function () return json.encode(output) end) and output or "undefined",
+        json = type(output) == "table" and pcall(function () return json.encode(output) end) and output or "undefined",
         data = {
           output = type(output) == "table" and stringify.format(output) or output,
           prompt = Prompt()
