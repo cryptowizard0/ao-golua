@@ -1,6 +1,7 @@
 require('token')
 local ao = require('ao')
 
+
 print("process"  )
 Version()
 
@@ -45,3 +46,18 @@ msgBalance = {
 
 local resp = Handlers.evaluate(msgBalance, {})
 print(resp)
+
+-- sqlite3
+local sqlite3 = require('lsqlite3')
+
+DB = DB or sqlite3.open_memory()
+
+DB:exec [[
+  CREATE TABLE IF NOT EXISTS chatList (
+    sessionID TEXT PRIMARY KEY,
+    otherHandleName TEXT NOT NULL,
+    otherHandleID TEXT NOT NULL,
+    lastMessageTime INTEGER,
+    lastViewedTime INTEGER
+  );
+]]
